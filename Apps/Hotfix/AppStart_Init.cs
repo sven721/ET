@@ -42,6 +42,8 @@ namespace ET
             
             Game.Scene.AddComponent<NavmeshComponent>();
 
+            Game.Scene.AddComponent<DBManagerComponent>();
+
             switch (Game.Options.AppType)
             {
                 case AppType.Server:
