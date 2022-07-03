@@ -1,11 +1,17 @@
-﻿namespace ET.Client
+﻿using ET.EventType;
+
+namespace ET.Client
 {
-    [Event(SceneType.Current)]
+    [Event(SceneType.Client)]//AEventAsync
     public class SceneChangeFinishEvent_CreateUIHelp : AEvent<Scene, EventType.SceneChangeFinish>
     {
-        protected override async ETTask Run(Scene scene, EventType.SceneChangeFinish args)
+        // protected override async ETTask Run(EventType.SceneChangeFinish args)
+        // {
+        //     await args.CurrentScene.GetComponent<UIComponent>().ShowWindowAsync(WindowID.WindowID_Helper);
+        // }
+        protected override async ETTask Run(Scene entity, SceneChangeFinish a)
         {
-            await UIHelper.Create(scene, UIType.UIHelp, UILayer.Mid);
+           await entity.GetComponent<UIComponent>().ShowWindowAsync(WindowID.WindowID_Helper);
         }
     }
 }
