@@ -73,7 +73,7 @@ public partial class UICodeSpawner
     static void SpawnCodeForDlg(GameObject gameObject)
     {
         string strDlgName  = gameObject.name;
-        string strFilePath = Application.dataPath + "/../Codes/HotfixView/Demo/UI/" + strDlgName ;
+        string strFilePath = Application.dataPath + HotfixViewUICodePath + "UI/" + strDlgName ;
         
         
         if ( !System.IO.Directory.Exists(strFilePath) )
@@ -81,7 +81,7 @@ public partial class UICodeSpawner
 	        System.IO.Directory.CreateDirectory(strFilePath);
         }
         
-	    strFilePath = Application.dataPath + "/../Codes/HotfixView/Demo/UI/" + strDlgName + "/" + strDlgName + "System.cs";
+	    strFilePath = Application.dataPath + HotfixViewUICodePath + "UI/" + strDlgName + "/" + strDlgName + "System.cs";
         if(System.IO.File.Exists(strFilePath))
         {
             Debug.LogError("已存在 " + strDlgName + "System.cs,将不会再次生成。");
@@ -96,7 +96,7 @@ public partial class UICodeSpawner
                   .AppendLine("using UnityEngine;")
                   .AppendLine("using UnityEngine.UI;\r\n");
 
-        strBuilder.AppendLine("namespace ET");
+        strBuilder.AppendLine("namespace ET.Client");
         strBuilder.AppendLine("{");
         
         strBuilder.AppendFormat("\t[FriendOf(typeof({0}))]\r\n", strDlgName);
@@ -133,7 +133,7 @@ public partial class UICodeSpawner
 	static void SpawnCodeForDlgEventHandle(GameObject gameObject)
     {
         string strDlgName = gameObject.name;
-        string strFilePath = Application.dataPath + "/../Codes/HotfixView/Demo/UI/" + strDlgName + "/Event" ;
+        string strFilePath = Application.dataPath + HotfixViewUICodePath + "UI/" + strDlgName + "/Event" ;
         
         
         if ( !System.IO.Directory.Exists(strFilePath) )
@@ -141,7 +141,7 @@ public partial class UICodeSpawner
 	        System.IO.Directory.CreateDirectory(strFilePath);
         }
         
-	    strFilePath = Application.dataPath + "/../Codes/HotfixView/Demo/UI/" + strDlgName + "/Event/" + strDlgName + "EventHandler.cs";
+	    strFilePath = Application.dataPath + HotfixViewUICodePath + "UI/" + strDlgName + "/Event/" + strDlgName + "EventHandler.cs";
         if(System.IO.File.Exists(strFilePath))
         {
 	        Debug.LogError("已存在 " + strDlgName + ".cs,将不会再次生成。");
@@ -151,7 +151,7 @@ public partial class UICodeSpawner
         StreamWriter sw = new StreamWriter(strFilePath, false, Encoding.UTF8);
         StringBuilder strBuilder = new StringBuilder();
         
-        strBuilder.AppendLine("namespace ET");
+        strBuilder.AppendLine("namespace ET.Client");
         strBuilder.AppendLine("{");
         strBuilder.AppendLine("\t[FriendOf(typeof(WindowCoreData))]");
         strBuilder.AppendLine("\t[FriendOf(typeof(UIBaseWindow))]");
@@ -219,7 +219,7 @@ public partial class UICodeSpawner
 	static void SpawnCodeForDlgModel(GameObject gameObject)
     {
         string strDlgName = gameObject.name;
-        string strFilePath = Application.dataPath + "/../Codes/ModelView/Demo/UI/" + strDlgName  ;
+        string strFilePath = Application.dataPath + ModelViewUICodePath + "UI/" + strDlgName  ;
         
         
         if ( !System.IO.Directory.Exists(strFilePath) )
@@ -227,7 +227,7 @@ public partial class UICodeSpawner
 	        System.IO.Directory.CreateDirectory(strFilePath);
         }
         
-	    strFilePath = Application.dataPath + "/../Codes/ModelView/Demo/UI/" + strDlgName  + "/" + strDlgName  + ".cs";
+	    strFilePath = Application.dataPath + ModelViewUICodePath + "UI/" + strDlgName  + "/" + strDlgName  + ".cs";
         if(System.IO.File.Exists(strFilePath))
         {
 	        Debug.LogError("已存在 " + strDlgName + ".cs,将不会再次生成。");
@@ -237,7 +237,7 @@ public partial class UICodeSpawner
         StreamWriter sw = new StreamWriter(strFilePath, false, Encoding.UTF8);
         StringBuilder strBuilder = new StringBuilder();
         
-        strBuilder.AppendLine("namespace ET");
+        strBuilder.AppendLine("namespace ET.Client");
         strBuilder.AppendLine("{");
         strBuilder.AppendLine("\t [ComponentOf(typeof(UIBaseWindow))]");
        
@@ -266,13 +266,13 @@ public partial class UICodeSpawner
         string strDlgName = gameObject.name ;
         string strDlgComponentName =  gameObject.name + "ViewComponent";
 
-        string strFilePath = Application.dataPath + "/../Codes/HotfixView/Demo/UIBehaviour/" + strDlgName;
+        string strFilePath = Application.dataPath + HotfixViewUICodePath + "UIBehaviour/" + strDlgName;
 
         if ( !System.IO.Directory.Exists(strFilePath) )
         {
 	        System.IO.Directory.CreateDirectory(strFilePath);
         }
-	    strFilePath = Application.dataPath + "/../Codes/HotfixView/Demo/UIBehaviour/" + strDlgName + "/" + strDlgComponentName + "System.cs";
+	    strFilePath = Application.dataPath + HotfixViewUICodePath + "UIBehaviour/" + strDlgName + "/" + strDlgComponentName + "System.cs";
 	    
         StreamWriter sw = new StreamWriter(strFilePath, false, Encoding.UTF8);
 
@@ -281,7 +281,7 @@ public partial class UICodeSpawner
         strBuilder.AppendLine()
 	        .AppendLine("using UnityEngine;");
         strBuilder.AppendLine("using UnityEngine.UI;");
-        strBuilder.AppendLine("namespace ET");
+        strBuilder.AppendLine("namespace ET.Client");
         strBuilder.AppendLine("{");
         strBuilder.AppendLine("\t[ObjectSystem]");
         strBuilder.AppendFormat("\tpublic class {0}AwakeSystem : AwakeSystem<{1}> \r\n", strDlgComponentName, strDlgComponentName);
@@ -318,18 +318,18 @@ public partial class UICodeSpawner
 	    string strDlgComponentName =  gameObject.name + "ViewComponent";
 
 
-	    string strFilePath = Application.dataPath + "/../Codes/ModelView/Demo/UIBehaviour/" + strDlgName;
+	    string strFilePath = Application.dataPath + ModelViewUICodePath + "UIBehaviour/" + strDlgName;
 	    if ( !System.IO.Directory.Exists(strFilePath) )
 	    {
 		    System.IO.Directory.CreateDirectory(strFilePath);
 	    }
-	    strFilePath = Application.dataPath + "/../Codes/ModelView/Demo/UIBehaviour/" + strDlgName + "/" + strDlgComponentName + ".cs";
+	    strFilePath = Application.dataPath + ModelViewUICodePath + "UIBehaviour/" + strDlgName + "/" + strDlgComponentName + ".cs";
 	    StreamWriter sw = new StreamWriter(strFilePath, false, Encoding.UTF8);
 	    StringBuilder strBuilder = new StringBuilder();
 	    strBuilder.AppendLine()
 		    .AppendLine("using UnityEngine;");
 	    strBuilder.AppendLine("using UnityEngine.UI;");
-	    strBuilder.AppendLine("namespace ET");
+	    strBuilder.AppendLine("namespace ET.Client");
 	    strBuilder.AppendLine("{");
 	    strBuilder.AppendLine("\t[ComponentOf(typeof(UIBaseWindow))]");
 	    strBuilder.AppendLine("\t[EnableMethod]");
@@ -350,7 +350,6 @@ public partial class UICodeSpawner
 	    sw.Close();
     }
 
-
     public static void CreateDestroyWidgetCode( ref StringBuilder strBuilder)
     {
 	    strBuilder.AppendFormat("\t\tpublic void DestroyWidget()");
@@ -359,8 +358,7 @@ public partial class UICodeSpawner
 	    strBuilder.AppendFormat("\t\t\tthis.uiTransform = null;\r\n");
 	    strBuilder.AppendLine("\t\t}\n");
     }
-    
-    
+
     public static void CreateDlgWidgetDisposeCode(ref StringBuilder strBuilder,bool isSelf = false)
     {
 	    string pointStr = isSelf ? "self" : "this";
@@ -381,10 +379,7 @@ public partial class UICodeSpawner
 			    string widgetName = widget.name + strClassType.Split('.').ToList().Last();
 			    strBuilder.AppendFormat("\t\t	{0}.m_{1} = null;\r\n", pointStr,widgetName);
 		    }
-		 
 	    }
-
-	 
     }
 
     public static void CreateWidgetBindCode(ref StringBuilder strBuilder, Transform transRoot)
@@ -544,7 +539,6 @@ public partial class UICodeSpawner
         return path;
     }
 
-
     static void GetSubUIBaseWindowCode(ref StringBuilder strBuilder,string widget,string strPath, string subUIClassType)
     {
 	    
@@ -572,7 +566,6 @@ public partial class UICodeSpawner
 	    strBuilder.AppendLine("     	}\n");
     }
     
-
     static UICodeSpawner()
     {
         WidgetInterfaceList = new List<string>();        
@@ -603,5 +596,8 @@ public partial class UICodeSpawner
     private const string UIWidgetPrefix = "E";
     private const string UIGameObjectPrefix = "EG";
     private const string UIItemPrefix = "Item";
+    
+    private const string ModelViewUICodePath = "/../Codes/ModelView/Client/";
+    private const string HotfixViewUICodePath = "/../Codes/ModelView/Client/";
 }
 
